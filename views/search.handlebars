@@ -1,0 +1,77 @@
+{{!-- CS340 Brandon Lo Search Page--}}
+<div>
+  <h1 class="display-3">Search Filters</h1>
+
+{{!-- Handlebar how to iterate through an array of objects
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+--}}
+<p>Search by Team</p>
+  <form action="/searchTeam">
+    <select name="teamID">
+      {{#each teams}}
+        <option value="{{inc @index}}">{{this.mascot}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" id="playerByTeamSearch" />
+  </form>
+
+  {{!-- Space added below for Formatting
+  --}}
+<p>Search by Position</p>
+  <form action="/searchPos">
+    <select name="positionID">
+  {{#each positions}}
+  <option value="{{inc @index}}">{{this.position}}</option>
+  {{/each}}
+  </select>
+    <input type="submit" id="playerByPositionSearch" />
+  </form>
+<br>
+</div>
+
+{{!-- Format of the table grabbed from
+https://stackoverflow.com/questions/46810713/how-to-display-table-using-handlebars-with-array-of-object
+--}}
+<div class="container-fluid">
+<table class="table" border="1px">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        Number
+      </th>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Postion
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each players}}
+      <td>
+        {{this.pNumber}}
+      </td>
+      <td>
+        {{this.firstName}}
+      </td>
+      <td>
+        {{this.lastName}}
+      </td>
+      <td>
+        {{this.mascot}}
+      </td>
+      <td>
+        {{this.position}}
+      </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

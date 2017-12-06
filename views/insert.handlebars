@@ -1,0 +1,202 @@
+{{!-- CS340 Brandon Lo Insert Page Page--}}
+<div>
+  <h1 class="display-3">Insert</h1>
+</div>
+
+{{!-- Section to insert a team
+https://www.w3schools.com/tags/tag_fieldset.asp
+ --}}
+<span class="border">
+<div class="container">
+  <form action="/insertTeam" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a team
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">City: </label>
+        <div class="col-8">
+          <input type="text" name="city" required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Mascot: </label>
+        <div class="col-8">
+          <input type="text" name="mascot" required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Stadium: </label>
+        <div class="col-8">
+          <input type="text" name="stadium" required />
+        </div>
+      </div>
+      <input type="submit"  id="teamSubmit" />
+    </fieldset>
+  </form>
+  </span>
+  <!-- Section to insert a player
+ -->
+  <form action="/insertPlayer" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a player
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Player Number: </label>
+        <div class="col-8">
+          <input type="number" name="pNumber" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">First Name: </label>
+        <div class="col-8">
+          <input type="text" name="firstName" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Last Name: </label>
+        <div class="col-8">
+          <input type="text" name="lastName" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Age: </label>
+        <div class="col-8">
+          <input type="number" name="age" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Team: </label>
+        <div class="col-8">
+          <select name="mascot">
+      {{#each teams}}
+      <option value="{{inc @index}}">{{this.mascot}}</option>
+      {{/each}}
+    </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position Group: </label>
+        <div class="col-8">
+          <select name="positionGroup">
+      {{#each positionGroup}}
+      <option value="{{inc @index}}">{{this.positionGroup}}</option>
+      {{/each}}
+    </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position: </label>
+        <div class="col-8">
+          <select name="position">
+      {{#each positions}}
+      <option value="{{inc @index}}">{{this.position}}</option>
+      {{/each}}
+    </select>
+        </div>
+      </div>
+      <input type="submit" id="playerSubmit" />
+    </fieldset>
+  </form>
+  <!-- Section to grab the offensive stats of players
+ -->
+  <form action="/insertOf" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add Offensive Stats
+      </legend>
+      <div class="form-group row"> <label class="col-2 col-form-label">Player: </label>
+        <div class="col-8">
+          <select name="playerNumber">
+      {{#each players}}
+      <option value="{{inc @index}}">
+        {{this.firstName}} {{this.lastName}}
+      </option>
+      {{/each}}
+    </select>
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passing Attempts: </label>
+        <div class="col-8">
+          <input type="number" name="passingAttempts" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passes Completed: </label>
+        <div class="col-8">
+          <input type="number" name="passesCompleted" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passing Yards: </label>
+        <div class="col-8">
+          <input type="number" name="passingYards" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Rushing Yards: </label>
+        <div class="col-8">
+          <input type="number" name="rushingYards" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Rushing Attempts: </label>
+        <div class="col-8">
+          <input type="number" name="rushingAttempts" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Receptions: </label>
+        <div class="col-8">
+          <input type="number" name="receptions" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Targets: </label>
+        <div class="col-8">
+          <input type="number" name="targets" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Receiving Yards </label>
+        <div class="col-8">
+          <input type="number" name="receivingYards" />
+        </div>
+      </div>
+      <input type="submit"  id="offensiveStatsSubmit" />
+    </fieldset>
+  </form>
+  <!-- Section to grab the defensive stats of players 
+ -->
+  <form action="/insertDef" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add Defensive Stats
+      </legend>
+      <div class="form-group row"> <label class="col-2 col-form-label">Player: </label>
+        <div class="col-8">
+          <select name="playerNumber">
+      {{#each players}}
+      <option value="{{inc @index}}">
+        {{this.firstName}} {{this.lastName}}
+      </option>
+      {{/each}}
+    </select>
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Sacks: </label>
+        <div class="col-8">
+          <input type="number" name="sacks" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Tackles: </label>
+        <div class="col-8">
+          <input type="number" name="tackles" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Forced Fumbles: </label>
+        <div class="col-8">
+          <input type="number" name="forcedFumbles" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Interceptions: </label>
+        <div class="col-8">
+          <input type="number" name="interceptions" /></div>
+      </div>
+      <input type="submit"  id="defensiveStatsSubmit" />
+    </fieldset>
+  </form>
+    </fieldset>
+  </form>
+</div>

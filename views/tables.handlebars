@@ -1,0 +1,646 @@
+{{!-- CS340 Brandon Lo Table/Home Page--}}
+<div>
+  <h1 class="display-3">NFLDB</h1>
+</div>
+
+<div class="container-fluid" border = 1px>
+<div>
+  <div class="card">
+    {{!-- Team Table
+		How to iterate through an object 
+		https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+		--}}
+    <div>
+      <div class="card-block">
+        <table class="table" id="teamsTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                City
+              </th>
+              <th>
+                Team Names
+              </th>
+              <th>
+                Stadium
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each teams}}
+              <td>
+                {{this.city}}
+              </td>
+              <td>
+                {{this.mascot}}
+              </td>
+              <td>
+                {{this.stadium}}
+              </td>
+              <td>
+                <button  type="button" data-toggle="collapse" data-target="#{{this.teamID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+          {{!-- How to use the collapse, format grabbed from here
+          https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+            <div class="collapse" id="{{this.teamID}}">
+              <div class="card card-block">
+                <form action="/updateTeams" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Team
+                    </legend>
+                    <input type="hidden" name="teamID" value= {{this.teamID}} />
+                    <div class="form-group">
+                      <label>City: </label>
+                      <input type="text" name="city" value= {{this.city}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Mascot: </label>
+                      <input type="text" name="mascot" value= {{this.mascot}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Stadium: </label>
+                      <input type="text" name="stadium" value= "{{this.stadium}}"/>
+                    </div>
+                    </div>
+                    <button type="submit" id="teamSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
+              <td>
+                <form action="/deleteTeams" method="get">
+                <input type="hidden" name="teamID" value= {{this.teamID}} />
+                <button type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Positions Group Table
+	https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+	-->
+  <div class="card">
+    <div>
+      <div class="card-block">
+        <table class="table" id="positionGroupTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                Position Group
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each positionGroup}}
+              <td>
+                {{this.positionGroup}}
+              </td>
+              <td>
+              <button  type="button" data-toggle="collapse" data-target="#positionGroup{{this.positionGroupID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+          {{!-- How to use the collapse, format grabbed from here
+          https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+          <div class="collapse" id="positionGroup{{this.positionGroupID}}">
+            <div class="card card-block">
+              <form action="/updatePos" method="get">
+                <fieldset>
+                  <legend>
+                    Update Position Group
+                  </legend>
+                  <input type="hidden" name="positionGroupID" value= {{this.positionGroupID}} />
+                  <div class="form-group">
+                    <label>Position Group: </label>
+                    <input type="text" name="positionGroup" value= "{{this.positionGroup}}" />
+                  </div>
+                  </div>
+                  <button type="submit" id="positionGroupSubmit" />Submit</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+            </td>
+            <td>
+              <form action="/deleteGroup" method="get">
+              <input type="hidden" name="positionGroupID" value= {{this.positionGroupID}} />
+              <button type="submit" id="deleteButton" />Delete</button>
+              </form>
+            </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Positions Table
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+  -->
+  <div class="card">
+    <div>
+      <div class="card-block">
+        <table class="table" id="positionGroupTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                Positions
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each positions}}
+              <td>
+                {{this.position}}
+              </td>
+              <td>
+                <button  type="button" data-toggle="collapse" data-target="#positions{{this.positionID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            {{!-- How to use the collapse, format grabbed from here
+            https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+            <div class="collapse" id="positions{{this.positionID}}">
+              <div class="card card-block">
+                <form action="/updatePos" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Position
+                    </legend>
+                    <input type="hidden" name="positionID" value= {{this.positionID}} />
+                    <div class="form-group">
+                      <label>Position: </label>
+                      <input type="text" name="position" value= {{this.position}} />
+                    </div>
+                    </div>
+                    <button type="submit" id="positionSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
+              <td>
+                <form action="/deletePos" method="get">
+                <input type="hidden" name="positionID" value= {{this.positionID}} />
+                <button type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Players Table
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars  -->
+  <div class="card">
+  </div>
+    <div>
+      <div class="card-block">
+        <table class="table" id="positionGroupTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                Number
+              </th>
+              <th>
+                First Name
+              </th>
+              <th>
+                Last Name
+              </th>
+              <th>
+                Age
+              </th>
+              <th>
+                Team
+              </th>
+              <th>
+                Position Group
+              </th>
+              <th>
+                Position
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each players}}
+              <td>
+                {{this.pNumber}}
+              </td>
+              <td>
+                {{this.firstName}}
+              </td>
+              <td>
+                {{this.lastName}}
+              </td>
+              <td>
+                {{this.age}}
+              </td>
+              <td>
+                {{this.team}}
+              </td>
+              <td>
+                {{this.positionGroup}}
+              </td>
+              <td>
+                {{this.position}}
+              </td>
+              <td>
+                <button  type="button" data-toggle="collapse" data-target="#player{{this.playerID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            {{!-- How to use the collapse, format grabbed from here
+            https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+            <div class="collapse" id="player{{this.playerID}}">
+              <div class="card card-block">
+                <form action="/updatePlayers" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Player
+                    </legend>
+                    <input type="hidden" name="playerID" value= {{this.playerID}} />
+                    <div class="form-group">
+                      <label>First Name: </label>
+                      <input type="text" name="firstName" value= {{this.firstName}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Last Name: </label>
+                      <input type="text" name="lastName" value= "{{this.lastName}}" />
+                    </div>
+                    </div>
+                    <button type="submit" id="playerSubmit"/>Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
+              <td>
+                <form action="/deletePlayers" method="get">
+                <input type="hidden" name="playerID" value= {{this.playerID}} />
+                <button type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Offsenive Stats
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars 
+  -->
+  <div class="card">
+    <div>
+      <div class="card-block">
+        <table class="table" id="offensiveStatsTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                Player Number
+              </th>
+              <th>
+                Passing Attempts
+              </th>
+              <th>
+                Passes Completed
+              </th>
+              <th>
+                Passing Yards
+              </th>
+              <th>
+                Rushing Yards
+              </th>
+              <th>
+                Rushing Attempts
+              </th>
+              <th>
+                Receptions
+              </th>
+              <th>
+                Targets
+              </th>
+              <th>
+                Receiving Yards
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each offensiveStats}}
+              <td>
+                {{this.playerNumber}}
+              </td>
+              <td>
+                {{this.passingAttempts}}
+              </td>
+              <td>
+                {{this.passesCompleted}}
+              </td>
+              <td>
+                {{this.passingYards}}
+              </td>
+              <td>
+                {{this.rushingYards}}
+              </td>
+              <td>
+                {{this.rushingAttempts}}
+              </td>
+              <td>
+                {{this.receptions}}
+              </td>
+              <td>
+                {{this.targets}}
+              </td>
+              <td>
+                {{this.receivingYards}}
+              </td>
+              <td>
+                <button  type="button" data-toggle="collapse" data-target="#offensiveStats{{this.offensiveStatsID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            {{!-- How to use the collapse, format grabbed from here
+            https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+            <div class="collapse" id="offensiveStats{{this.offensiveStatsID}}">
+              <div class="card card-block">
+                <form action="/updateOff" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Offensive Stats
+                    </legend>
+                    <input type="hidden" name="offensiveStatsID" value= {{this.offensiveStatsID}} />
+                    <div class="form-group">
+                      <label>Passing Attemps: </label>
+                      <input type="number" name="passingAttempts" value= {{this.passingAttempts}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Passes Completed: </label>
+                      <input type="number" name="passesCompleted" value= {{this.passesCompleted}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Passing Yards: </label>
+                      <input type="number" name="passingYards" value= {{this.passingYards}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Rushing Yards: </label>
+                      <input type="number" name="rushingYards" value= {{this.rushingYards}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Rushing Attemps: </label>
+                      <input type="number" name="rushingAttempts" value= {{this.rushingAttempts}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Receptions: </label>
+                      <input type="number" name="receptions" value= {{this.receptions}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Targets: </label>
+                      <input type="number" name="targets" value= {{this.targets}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Receiving Yards: </label>
+                      <input type="number" name="receivingYards" value= {{this.receivingYards}} />
+                    </div>
+                    </div>
+                    <button type="submit" id="offensiveStatsSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
+              <td>
+                <form action="/deleteOff" method="get">
+                <input type="hidden" name="offensiveStatsID" value= {{this.offensiveStatsID}} />
+                <button type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Defensive Stats Table
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+  -->
+  <div class="card">
+    <div>
+      <div class="card-block">
+        <table class="table" id="defensiveStatsTable" border="1px">
+          <thead class="thead-inverse">
+            <tr>
+              <th>
+                Player Number
+              </th>
+              <th>
+                Sacks
+              </th>
+              <th>
+                Tackles
+              </th>
+              <th>
+                Forced Fumbles
+              </th>
+              <th>
+                Interceptions
+              </th>
+              <th>
+                Edit
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each defensiveStats}}
+              <td>
+                {{this.playerNumber}}
+              </td>
+              <td>
+                {{this.sacks}}
+              </td>
+              <td>
+                {{this.tackles}}
+              </td>
+              <td>
+                {{this.forcedFumbles}}
+              </td>
+              <td>
+                {{this.interceptions}}
+              </td>
+              <td>
+                <button  type="button" data-toggle="collapse" data-target="#defensiveStats{{this.defensiveStatsID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            {{!-- How to use the collapse, format grabbed from here
+            https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+            <div class="collapse" id="defensiveStats{{this.defensiveStatsID}}">
+              <div class="card card-block">
+                <form action="/updateDef" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Defensive Stats
+                    </legend>
+                    <input type="hidden" name="defensiveStatsID" value= {{this.defensiveStatsID}} />
+                    <div class="form-group">
+                      <label>Sacks: </label>
+                      <input type="number" name="sacks" value= {{this.sacks}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Tackles: </label>
+                      <input type="number" name="tackles" value= {{this.tackles}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Forced Fumbles: </label>
+                      <input type="number" name="forcedFumbles" value= {{this.forcedFumbles}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Interceptions: </label>
+                      <input type="number" name="interceptions" value= {{this.interceptions}} />
+                    </div>
+                    </div>
+                    <button type="submit" id="defensiveStatsSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
+              <td>
+              <form action="/deleteDef" method="get">
+              <input type="hidden" name="defensiveStatsID" value= {{this.defensiveStatsID}} />
+              <button type="submit" id="deleteButton" />Delete</button>
+              </form>
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<!-- Special Teams Stats
+https://stackoverflow.com/questions/22696886/how-to-iterate-over-array-of-objects-in-handlebars
+ -->
+<div class="card">
+  <div>
+    <div class="card-block">
+      <table class="table" id="specialTeamsStatsTable" border="1px" >
+        <thead class="thead-inverse">
+          <tr>
+            <th>
+              Player Number
+            </th>
+            <th>
+              Field Goal Attempts
+            </th>
+            <th>
+              Field Goals Made
+            </th>
+            <th>
+              Punts
+            </th>
+            <th>
+              Average Punt Yards
+            </th>
+            <th>
+              Edit
+            </th>
+            <th>
+              Delete
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each specialTeamsStats}}
+            <td>
+              {{this.playerNumber}}
+            </td>
+            <td>
+              {{this.fieldGoalAttempts}}
+            </td>
+            <td>
+              {{this.fieldGoalMade}}
+            </td>
+            <td>
+              {{this.punts}}
+            </td>
+            <td>
+              {{this.averagePuntYards}}
+            </td>
+            <td>
+              <button  type="button" data-toggle="collapse" data-target="#specialTeamsStats{{this.specialTeamsStatsID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+          {{!-- How to use the collapse, format grabbed from here
+          https://www.w3schools.com/bootstrap/bootstrap_collapse.asp --}}
+          <div class="collapse" id="specialTeamsStats{{this.specialTeamsStatsID}}">
+            <div class="card card-block">
+              <form action="/updateSpec" method="get">
+                <fieldset>
+                  <legend>
+                    Update Special Teams Stats
+                  </legend>
+                  <input type="hidden" name="specialTeamsStatsID" value= {{this.specialTeamsStatsID}} />
+                  <div class="form-group">
+                    <label>Field Goals Made: </label>
+                    <input type="number" name="fieldGoalMade" value= {{this.fieldGoalMade}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Field Goal Attempts: </label>
+                    <input type="number" name="tackles" value= {{this.fieldGoalAttempts}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Punts: </label>
+                    <input type="number" name="punts" value= {{this.punts}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Average PuntYards: </label>
+                    <input type="number" name="interceptions" value= {{this.averagePuntYards}} />
+                  </div>
+                  </div>
+                  <button type="submit" id="specialTeamsStatsSubmit" />Submit</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+            </td>
+            <td>
+            <form action="/deleteSpec" method="get">
+            <input type="hidden" name="specialTeamsStatsID" value= {{this.specialTeamsStatsID}} />
+            <button type="submit" id="deleteButton" />Delete</button>
+            </form>
+            </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>

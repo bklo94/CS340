@@ -1,0 +1,19 @@
+{
+  "name": "database-interactions-and-ui",
+  "version": "1.0.0",
+  "description": "Database site with ajax interactions",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Lo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.2",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.11.3",
+    "mysql": "^2.8.0",
+    "request": "^2.81.0"
+  }
+}

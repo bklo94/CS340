@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>NFL Database</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<body>
+		{{!-- Format taken from here for the navbar items
+		https://getbootstrap.com/docs/4.0/components/navbar/
+		Style from here from the inverted navigation bar
+		https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
+		--}}
+		<nav class="navbar navbar-inverse">
+			<div class="collapse navbar-collapse container-fluid" id="navbarText" >
+			<ul class="nav navbar-nav">
+	      <li>
+	        <a class="active" href="/tables">Home</a>
+	      </li>
+	      <li>
+	        <a href="/insert">Insert</a>
+	      </li>
+				<li>
+	        <a href="/search">Filters</a>
+	      </li>
+	    </ul>
+		</div>
+		</nav>
+		{{{body}}}
+		{{!-- Links taken from here for the bootstrap and other items scripts/stylesheets
+		https://getbootstrap.com/docs/4.0/components/navbar/ --}}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+
+</html>
